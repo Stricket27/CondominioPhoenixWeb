@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9fb7dcb584c54d14afec231d5edf2b65" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoPhoenixModel.AreaComun" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPhoenixModel.EstadoCuenta" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPhoenixModel.Incidencias" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPhoenixModel.Informacion" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPhoenixModel.PlanCobro" Width="1.5" PointX="5.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPhoenixModel.Reservacion" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPhoenixModel.Residencia" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPhoenixModel.RubroCobro" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPhoenixModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPhoenixModel.TipoUsuario" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoPhoenixModel.Usuario" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="ProyectoPhoenixModel.FK_Reservacion_AreaComun" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPhoenixModel.FK_EstadoCuenta_PlanCobro" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPhoenixModel.FK_EstadoCuenta_Residencia" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPhoenixModel.FK_Incidencias_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPhoenixModel.FK_Reservacion_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPhoenixModel.FK_Residencia_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPhoenixModel.FK_Usuario_TipoUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoPhoenixModel.Detalle_PlanRubro" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,58 @@
+﻿@*@model Infraestruture.Models.Reservacion*@
+
+@{
+    ViewBag.Title = "VerEstadoReservacion";
+
+    String nombreUsuario = "";
+    int idUsuario = 0;
+
+    if (Session["Usuario"] != null)
+    {
+        Infraestruture.Models.Usuario usuario = new Infraestruture.Models.Usuario();
+        usuario = (Infraestruture.Models.Usuario)Session["Usuario"];
+        nombreUsuario = $"{usuario.Nombre} {usuario.Apellidos}";
+        idUsuario = usuario.ID_Usuario;
+    }
+
+    List<Infraestruture.Models.ViewModel.ReservacionUsuarioAreaViewModel> listaReservaciones = ViewBag.Reservaciones;
+    TimeSpan ts = new TimeSpan(12, 00, 00);
+}
+
+<h2>Mis reservaciones</h2>
+
+<p>
+    <a href="@Url.Action("Agregar", "Reservacion")" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar nueva reservación</a>
+</p>
+<div class="row">
+
+    @foreach (var item in listaReservaciones)
+    {
+        <div class="col-4">
+            <div class="card bg-light mb-3" style="max-width: 20rem;">
+                <div class="card-header"><b>@item.NombreAreaComun</b></div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <b>Día de reservación</b>
+                        <br />
+                        @item.Dia
+                    </p>
+                    <p class="card-text">
+                        <b>Hora de inicio</b>
+                        <br />
+                        @item.HoraInicio
+                    </p>
+                    <p class="card-text">
+                        <b>Hora final</b>
+                        <br />
+                        @item.HoraFinal
+                    </p>
+                    <p class="card-text">
+                        <b>Confirmación</b>
+                        <br />
+                        @item.Confirmacion
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

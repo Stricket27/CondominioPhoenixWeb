@@ -1,0 +1,65 @@
+﻿@model Infraestruture.Models.Residencia
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Residencia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Número de residencia
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumeroResidencia)
+        </dd>
+
+        <dt>
+            Cantidad de personas
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadPersonas)
+        </dd>
+
+        <dt>
+            Año de inicio
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnoInicio)
+        </dd>
+
+        <dt>
+            Catidad de vehiculos
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadAutos)
+        </dd>
+
+        <dt>
+            Estado de la residencia
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoResidencia)
+        </dd>
+
+        <dt>
+            Estado actual
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoActual)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Index", "Residencia")" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Volver a la lista</a>
+</p>

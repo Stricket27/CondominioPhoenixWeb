@@ -1,0 +1,62 @@
+﻿@model Infraestruture.Models.Usuario
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Apellidos)
+        </dd>
+
+        <dt>
+            Correo electrónico
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CorreoElectronico)
+        </dd>
+
+        <dt>
+            Estado actual
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoActual)
+        </dd>
+
+        <dt>
+            Tipo de usuario
+        </dt>
+
+        @if (Model.ID_TipoUsuario == 1)
+        {
+            <dd>Administrador</dd>
+        }
+        else
+        {
+            <dd>Residente</dd>
+        }
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Index", "Usuario")" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Volver a la lista</a>
+</p>

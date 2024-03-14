@@ -1,0 +1,104 @@
+﻿@model IEnumerable<Infraestruture.Models.Informacion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de información</h2>
+
+<p>
+    <a href="@Url.Action("Agregar", "Informacion")" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar nueva información</a>
+</p>
+
+@if (Model.Count() > 0)
+{
+    <table class="table" style="text-align:center">
+        <tr>
+            <th>
+                Título
+            </th>
+            <th>
+                Fecha de publicación
+            </th>
+            <th>
+                Estado actual
+            </th>
+            <th>
+                Tipo de archivo
+            </th>
+            <th>
+                Tipo de información
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaPublicacion)
+                </td>
+                <td>
+                    @if (item.EstadoActual == "Activo")
+                    {
+                        <i style="color: lawngreen" class="fa-solid fa-unlock"></i>
+                    }
+                    else
+                    {
+                        <i style="color: red" class="fa-solid fa-lock"></i>
+                    }
+                    @Html.DisplayFor(modelItem => item.EstadoActual)
+                </td>
+                <td>
+                    @if (item.TipoArchivo == ".png" || item.TipoArchivo == ".pdf" || item.TipoArchivo == ".png")
+                    {
+                        <img src="@Url.Content("~/Content/themes/base/images/" + item.TipoArchivo.Replace(".","") + ".png")" width="40" />
+                    }
+                    else
+                    {
+                        <img src="~/Content/themes/base/images/TXT.png" width="40" />
+                    }
+
+                </td>
+
+                @if (item.TipoInformacion == "ArchivoDocumentalReglamento")
+                {
+                    <td>Documento de reglamentación</td>
+                }
+                else if (item.TipoInformacion == "ArchivoDocumentalActas")
+                {
+                    <td>Documento de acta</td>
+                }
+                else if (item.TipoInformacion == "ArchivoDocumentalEstadoFinanciero")
+                {
+                    <td>Documento de estado financiero</td>
+                }
+                else
+                {
+                    <td>@item.TipoInformacion</td>
+                }
+                <td>
+                    <a href="@Url.Action("Editar", "Informacion", new { id = item.ID_Informacion })" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                    <a href="@Url.Action("Detalle", "Informacion", new { id = item.ID_Informacion })" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i> Detalle</a>
+                    @if (item.EstadoActual == "Activo")
+                    {
+                        <a href="@Url.Action("CambiarEstado", "Informacion", new { id = item.ID_Informacion })" class="btn btn-danger"><i class="fa-solid fa-x"> </i> Inactivo</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("CambiarEstado", "Informacion", new { id = item.ID_Informacion })" class="btn btn-success"><i class="fa-solid fa-check"> </i> Activo</a>
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <h1>No hay datos por mostrar</h1>
+}
+
+

@@ -1,0 +1,54 @@
+﻿@model Infraestruture.Models.Incidencias
+@*@model Infraestruture.Models.ViewModel.IncidenciaUsuarioViewModel*@
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Incidencias</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Título
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            Descripción
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>Fecha de incidencia</dt>
+
+        <dd>@Html.DisplayFor(model => model.FechaIncidencia)</dd>
+
+        <dt>
+            Estado de solicitud
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoSolicitud)
+        </dd>
+
+        <dt>
+            Estado actual
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoActual)
+        </dd>
+        
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Index", "Incidencias")" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Volver a la lista</a>
+</p>

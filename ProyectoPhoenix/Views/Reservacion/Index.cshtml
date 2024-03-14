@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Infraestruture.Models.ViewModel.ReservacionUsuarioAreaViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de reservaciones</h2>
+<p>
+    <b style="color: red">NOTA:</b> Si quieres cambiar la confirmación en <b style="color: green">"Aprobado"</b> o
+    <b style="color: red">"Rechazado"</b>, debes de presionar el boton de <b style="color: green">"Aprobado"</b>
+    para cambiar la confirmación que guste
+</p>
+@if (Model.Count() > 0)
+{
+    <table class="table" style="text-align:center">
+        <tr>
+            <th>
+                Nombre de la persona
+            </th>
+            <th>
+                Nombre de area común
+            </th>
+
+            <th>
+                Día de reservación
+            </th>
+            <th>
+                Estado actual
+            </th>
+            <th>
+                Confirmación
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreAreaComun)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Dia)
+                </td>
+                <td>
+                    @if (item.Confirmacion == "Pendiente")
+                    {
+                        <i style="color: gray" class="fa-regular fa-question"></i>
+
+                    }
+                    else if (item.Confirmacion == "Aprovado")
+                    {
+                        <i style="color:lawngreen" class="fa-solid fa-check"> </i>
+                    }
+                    else
+                    {
+                        <i style="color:red" class="fa-solid fa-x"> </i>
+                    }
+                    @Html.DisplayFor(modelItem => item.Confirmacion)
+                </td>
+                <td>
+                    <a href="@Url.Action("Detalle", "Reservacion", new { id = item.ID_Reservacion })" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i> Detalle</a>
+                    
+                    @if (item.Confirmacion == "Pendiente")
+                    {
+                        <a href="@Url.Action("CambiarConfirmacion", "Reservacion", new { id = item.ID_Reservacion })" class="btn btn-success"><i class="fa-solid fa-check"> </i> Aprovado</a>
+                    }
+                    else if (item.Confirmacion == "Aprovado")
+                    {
+                        <a href="@Url.Action("CambiarConfirmacion", "Reservacion", new { id = item.ID_Reservacion })" class="btn btn-danger"><i class="fa-solid fa-x"> </i> Rechazado</a>
+                    }
+                    else if (item.Confirmacion == "Rechazado")
+                    {
+                        <a href="@Url.Action("CambiarConfirmacion", "Reservacion", new { id = item.ID_Reservacion })" class="btn btn-success"><i class="fa-solid fa-check"> </i> Aprovado</a>
+
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <h2>No hay datos por mostrar</h2>
+}
+

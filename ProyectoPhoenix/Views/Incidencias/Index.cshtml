@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Infraestruture.Models.ViewModel.IncidenciaUsuarioViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de incidencias</h2>
+
+<p>
+    <a href="@Url.Action("Agregar", "Incidencias")" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar nueva incidencias</a>
+</p>
+
+@if (Model.Count() > 0)
+{
+    <table class="table" style="text-align:center">
+        <tr>
+            <th>
+                Persona de la incidencia
+            </th>
+            <th>
+                Título
+            </th>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Estado de solicitud
+            </th>
+            <th>
+                Estado actual
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstadoSolicitud)
+                </td>
+                <td>
+                    @if (item.EstadoActual == "Activo")
+                    {
+                        <i style="color: lawngreen" class="fa-solid fa-unlock"></i>
+                    }
+                    else
+                    {
+                        <i style="color: red" class="fa-solid fa-lock"></i>
+                    }
+                    @Html.DisplayFor(modelItem => item.EstadoActual)
+                </td>
+
+                <td>
+                    <a href="@Url.Action("Editar", "Incidencias", new { id = item.ID_Incidencias })" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                    <a href="@Url.Action("Detalle", "Incidencias", new { id = item.ID_Incidencias })" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i> Detalle</a>
+                    @if (item.EstadoActual == "Activo")
+                    {
+                        <a href="@Url.Action("CambiarEstado", "Incidencias", new { id = item.ID_Incidencias })" class="btn btn-danger"><i class="fa-solid fa-x"> </i> Inactivo</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("CambiarEstado", "Incidencias", new { id = item.ID_Incidencias })" class="btn btn-success"><i class="fa-solid fa-check"> </i> Activo</a>
+                    }
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <h1>No hay datos por mostrar</h1>
+}
+

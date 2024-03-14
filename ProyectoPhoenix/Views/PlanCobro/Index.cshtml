@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Infraestruture.Models.PlanCobro>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de planes</h2>
+
+<p>
+    <a href="@Url.Action("Agregar", "PlanCobro")" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar nuevo plan de cobro</a>
+</p>
+@if (Model.Count() > 0)
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-4">
+                <div class="card bg-light mb-3" style="max-width: 25rem;">
+                    <div class="card-header"><b>@item.Descripcion</b></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <b>Estado actual:</b>
+                            @if (item.EstadoActual == "Activo")
+                            {
+                                <i style="color: lawngreen" class="fa-solid fa-unlock"></i>
+                            }
+                            else
+                            {
+                                <i style="color: red" class="fa-solid fa-lock"></i>
+                            }
+                            @Html.DisplayFor(modelItem => item.EstadoActual)
+                        </p>
+                        <p><b>Precio total: </b>¢ @Html.DisplayFor(modelItem => item.TotalPrecioRubro)</p>
+
+                        <a href="@Url.Action("Editar", "PlanCobro", new { id = item.ID_PlanCobro })" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                        <a href="@Url.Action("Detalle", "PlanCobro", new { id = item.ID_PlanCobro })" class="btn btn-info"><i class="fa-solid fa-pen-to-square"></i> Detalle</a>
+                        @if (item.EstadoActual == "Activo")
+                        {
+                            <a href="@Url.Action("CambiarEstado", "PlanCobro", new { id = item.ID_PlanCobro })" class="btn btn-danger"><i class="fa-solid fa-x"> </i> Inactivo</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("CambiarEstado", "PlanCobro", new { id = item.ID_PlanCobro })" class="btn btn-success"><i class="fa-solid fa-check"> </i> Activo</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <h1>No hay datos por mostrar</h1>
+}

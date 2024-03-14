@@ -1,0 +1,40 @@
+﻿@model Infraestruture.Models.Usuario
+@{
+    ViewBag.Title = "IndexIniciarSesion";
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+    
+}
+
+<link rel="stylesheet" href="~/Content/EstiloIniciarSesion.css" />
+
+@using (Html.BeginForm("IniciarSesion", "Usuario"))
+{
+    @Html.AntiForgeryToken()
+    <main class="form-signin w-200 m-auto">
+        <form>
+            <ul class="nav justify-content-center pb-3 mb-3">
+                <img class="nav-item" src="~/Content/themes/base/images/Logo del condominio.png" width="200px" />
+            </ul>
+
+            <div class="form-group">
+                <div class="form-floating mb-3">
+                    @Html.EditorFor(model => model.CorreoElectronico, new { htmlAttributes = new { @class = "form-control", @id = "floatingInput", @placeholder = "name@example.com" } })
+                    <label for="floatingInput">Correo electrónico</label>
+                </div>
+                <div class="form-floating">
+                    @Html.PasswordFor(model => model.Contrasenna, new { @class = "form-control", @id = "floatingPassword", @placeholder = "Password" })
+                    <label for="floatingPassword">Contraseña</label>
+                </div>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Ingresar</button>
+            <br />
+            <br />
+            <a href="@Url.Action("Index", "Home")" class="w-100 btn btn-lg btn-secondary">Regresar a la página</a>
+
+        </form>
+    </main>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Infraestruture.Models.RubroCobro>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista de rubros</h2>
+
+<p>
+    <a href="@Url.Action("Agregar", "RubroCobro")" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Agregar nuevo rubro de cobro</a>
+</p>
+
+@if (Model.Count() > 0)
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-4">
+                <div class="card bg-light mb-3" style="max-width: 20rem;">
+                    <div class="card-header"><b>@item.Descripcion</b></div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <strong>Precio:</strong>
+                            ¢@item.Precio
+                        </p>
+                        <p class="card-text">
+                            <strong>Estado actual:</strong>
+                            @if (item.EstadoActual == "Activo")
+                            {
+                                <i style="color: lawngreen" class="fa-solid fa-unlock"></i>
+                            }
+                            else
+                            {
+                                <i style="color: red" class="fa-solid fa-lock"></i>
+                            }
+                            @Html.DisplayFor(modelItem => item.EstadoActual)
+                        </p>
+                        <a href="@Url.Action("Editar", "RubroCobro", new { id = item.ID_RubroCobro })" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i> Editar</a>
+                        @if (item.EstadoActual == "Activo")
+                        {
+                            <a href="@Url.Action("CambiarEstado", "RubroCobro", new { id = item.ID_RubroCobro })" class="btn btn-danger"><i class="fa-solid fa-x"> </i> Inactivo</a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("CambiarEstado", "RubroCobro", new { id = item.ID_RubroCobro })" class="btn btn-success"><i class="fa-solid fa-check"> </i> Activo</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+else
+{
+    <h1>No hay datos por mostrar</h1>
+}
+
+

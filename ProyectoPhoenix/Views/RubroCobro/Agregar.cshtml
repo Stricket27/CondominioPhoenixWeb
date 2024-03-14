@@ -1,0 +1,65 @@
+﻿@model Infraestruture.Models.RubroCobro
+
+@{
+    ViewBag.Title = "Agregar";
+    List<SelectListItem> estado = ViewBag.listaEstados;
+}
+
+<h2>Agregar</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>RubroCobro</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Descripción</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Precio, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group">
+                <div class="col-md-10">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">¢</span>
+                        @Html.EditorFor(model => model.Precio, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Precio, "", new { @class = "text-danger" })
+                        <span class="input-group-text">.00</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Estado actual</label>
+            <div class="col-md-10">
+                @Html.DropDownList("EstadoActual", estado, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.EstadoActual, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear rubro cobro" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+    <br />
+}
+
+<div>
+    <a href="@Url.Action("Index", "RubroCobro")" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Volver a la lista</a>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Infraestruture.Models.ViewModel.EstadoCuentaResidenciaPlanViewModel>
+
+@{
+    ViewBag.Title = "EstadoCuentaReporte";
+}
+
+<h2>EstadoCuentaReporte</h2>
+
+@using (Html.BeginForm("CrearPDFEstadoCuenta", "Reportes", FormMethod.Post))
+{
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Generar PDF" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+<p>
+    @*<a href="@Html.Action("CrearPDFEstadoCuenta,Reportes")" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Generar PDF</a>*@
+    @*@Html.ActionLink("Generar PDF", "CrearPDFEstadoCuenta", "Reportes")*@
+</p>
+<table class="table" style="text-align:center">
+    <tr>
+        <th>
+            Residencia relacionado
+        </th>
+        <th>
+            Plan relacionado
+        </th>
+        <th>
+            Estado de pago
+        </th>
+        <th>
+            Proxima fecha a pagar
+        </th>
+        <th>
+            Estado actual
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroResidencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionPlan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProximaFechaPago)
+            </td>
+            <td>
+                @if (item.EstadoActual == "Activo")
+                {
+                    <i style="color: lawngreen" class="fa-solid fa-unlock"></i>
+                }
+                else
+                {
+                    <i style="color: red" class="fa-solid fa-lock"></i>
+                }
+                @Html.DisplayFor(modelItem => item.EstadoActual)
+            </td>
+        </tr>
+    }
+</table>

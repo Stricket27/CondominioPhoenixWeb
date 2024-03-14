@@ -1,0 +1,138 @@
+﻿@model IEnumerable<Infraestruture.Models.Informacion>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<link rel="stylesheet" href="~/Content/Estilo.css" />
+<main>
+    <br />
+    <div class="bd-example">
+        <img class="contenedor" id="Imagen" src="~/Content/themes/base/images/Vista del condominio.jpg" width="100%" height="600" />
+        <img class="centrado" src="~/Content/themes/base/images/Logo del condominio.png" />
+    </div>
+
+    <br />
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading fw-normal lh-1">Quienes somos </h2>
+            <p style="text-align: justify" class="lead">
+                Somos un lugar donde usted mismo o su familia se puede acomodar con nuestro condominios que tenemos,
+                contamos de más de 100 condominios con sus distintas habitación y gusto de la persona que quiera vivir en ella,
+                tambien hay algunos lugares donde puedes hacer deporte, relajarse o disfrutar con tus amigos y familiares, puedes tener
+                más información en nuestros contractos.
+            </p>
+        </div>
+        <div class="col-md-5">
+            <img src="~/Content/themes/base/images/Casa.png" />
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row mb-2">
+        <h2 class="pb-2 border-bottom"><i class="fa-solid fa-newspaper"></i> Avisos</h2>
+        @foreach (var item in Model)
+        {
+            if (item.TipoInformacion.Trim() == "Avisos" && item.EstadoActual == "Activo")
+            {
+                <div class="col-md-6">
+                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <h3 class="mb-0">@item.Titulo</h3>
+                            <div class="mb-1 text-muted">@Html.DisplayFor(modelItem => item.FechaPublicacion)</div>
+                            <p class="card-text mb-auto">@item.Descripcion</p>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                            @if (item.Archivo != null)
+                            {
+                                <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(item.Archivo)" width="100" style="margin-top: 20px" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/themes/base/images/Sin imagen.jpg" width="100" style="margin-top: 20px" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="row mb-2">
+        <h2 class="pb-2 border-bottom"><i class="fa-solid fa-radio"></i> Noticias</h2>
+        @foreach (var item in Model)
+        {
+            if (item.TipoInformacion.Trim() == "Noticias" && item.EstadoActual == "Activo")
+            {
+                <div class="col-md-6">
+                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <h3 class="mb-0">@item.Titulo</h3>
+                            <div class="mb-1 text-muted">@Html.DisplayFor(modelItem => item.FechaPublicacion)</div>
+                            <p class="card-text mb-auto">@item.Descripcion</p>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                            @if (item.Archivo != null)
+                            {
+                                <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(item.Archivo)" width="100" style="margin-top: 20px" />
+                            }
+                            else
+                            {
+                                <img src="~/Content/themes/base/images/Sin imagen.jpg" width="100" style="margin-top: 20px" />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="row mb-2">
+        <h2 class="pb-2 border-bottom"><i class="fa-solid fa-file"></i> Archivos documentales</h2>
+        @foreach (var item in Model)
+        {
+            if (item.TipoInformacion.Trim() != "Noticias" && item.TipoInformacion.Trim() != "Avisos" && item.EstadoActual == "Activo")
+            {
+                <div class="col-md-6">
+                    <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                        <div class="col p-4 d-flex flex-column position-static">
+                            <h3 class="mb-0">@item.Titulo</h3>
+                            <div class="mb-1 text-muted">@Html.DisplayFor(modelItem => item.FechaPublicacion)</div>
+                            <p class="card-text mb-auto">@item.Descripcion</p>
+                        </div>
+                        <div class="col-auto d-none d-lg-block">
+                            <img src="~/Content/themes/base/images/PDF.png" width="100" style="margin-top: 20px" />
+                        </div>
+                    </div>
+                    <a class="btn btn-success" href="data:application/pdf;charset=utf-8;base64,@Convert.ToBase64String(item.Archivo)" download="@item.Titulo" style="width: 30%">Descargar PDF</a>
+                </div>
+            }
+        }
+    </div>
+    <br />
+    <h2 class="featurette-heading fw-normal lh-1">Equipo de trabajo </h2>
+    <p class="lead">En este espacio se muestra los desarrolladores que estan detras de la página web</p>
+    <center>
+        <div class="col-sm-6 col-lg-4 mb-4">
+            <div class="card">
+                @*<svg class="bd-placeholder-img card-img-top" width="100%" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96" /><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>*@
+                <img src="~/Content/themes/base/images/Fotografia.jpg" />
+                <div class="card-body">
+                    <h5 class="card-title">Responsable desarrollador del proyecto "Condominio Phoenix"</h5>
+                    <p class="card-text">Moisés Quirós Camacho</p>
+                    <p class="card-text">San Antonio de Belén, Heredia</p>
+                    <p class="card-text">Estudiante de la Universidad Técnica Nacional, sede central</p>
+                    <p class="card-text">23 años</p>
+                </div>
+            </div>
+        </div>
+    </center>
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous" async></script>
+</main>
+
+@Scripts.Render("~/bundles/sweetalert")
+@if (ViewBag.NotificationMessage != null)
+{
+    <script>
+            @Html.Raw(ViewBag.NotificationMessage)
+    </script>
+}

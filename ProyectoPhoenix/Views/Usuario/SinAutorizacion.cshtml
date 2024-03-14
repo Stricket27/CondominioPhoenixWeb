@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "SinAutorizacion";
+    Layout = "~/Views/Shared/_LayoutUsuario.cshtml";
+}
+
+<link rel="stylesheet" href="~/Content/EstiloIniciarSesion.css" />
+
+<main class="form-signin w-200 m-auto">
+    <form>
+        <ul class="nav justify-content-center pb-3 mb-3">
+            <img class="nav-item" src="~/Content/themes/base/images/Sin Autorizacion.png" width="100px" />
+        </ul>
+
+        <div class="form-group">
+            <center>
+                <h2>No tienes autorización</h2>
+                <p>Solo personas autorizadas</p>
+            </center>
+            
+        </div>
+        <input type="button" value="Regresar" class="w-100 btn btn-lg btn-secondary" onclick="goBack()" />
+    </form>
+</main>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>

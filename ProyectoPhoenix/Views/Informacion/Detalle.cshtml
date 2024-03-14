@@ -1,0 +1,101 @@
+﻿@model Infraestruture.Models.Informacion
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Informacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            Titulo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            Descripción
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            Fecha de publicación
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaPublicacion)
+        </dd>
+
+        <dt>
+            Estado actual
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoActual)
+        </dd>
+
+        <dt>
+            Tipo de información
+        </dt>
+
+        @if (Model.TipoInformacion == "ArchivoDocumentalReglamento")
+        {
+            <dd>
+                <b>Archivo documental:</b> Reglamento
+            </dd>
+        }
+        else if (Model.TipoInformacion == "ArchivoDocumentalActas")
+        {
+            <dd>
+                <b>Archivo documental:</b> Acta
+            </dd>
+        }
+        else if (Model.TipoInformacion == "ArchivoDocumentalEstadoFinanciero")
+        {
+            <dd>
+                <b>Archivo documental:</b> Estado financiero
+            </dd>
+        }
+        else
+        {
+            <dd>
+                @Html.DisplayFor(model => model.TipoInformacion)
+            </dd>
+        }
+
+
+
+
+        @if (Model.Archivo == null)
+        {
+            <dd>
+                <img src="~/Content/themes/base/images/Sin imagen.jpg" width="150px" />
+            </dd>
+        }
+        else
+        {
+            <br />
+            <dd>
+                <div class="col-md-4">
+                    <img src="data:image/jpeg;charset=utf-8;base64,@Convert.ToBase64String(Model.Archivo)"
+                         alt="@Html.DisplayFor(model => model.Titulo)"
+                         class="img-fluid rounded-start" width="150px" />
+                </div>
+            </dd>
+        }
+
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Index", "Informacion")" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Volver a la lista</a>
+</p>

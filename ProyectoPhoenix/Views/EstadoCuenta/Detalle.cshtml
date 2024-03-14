@@ -1,0 +1,41 @@
+﻿@model Infraestruture.Models.EstadoCuenta
+
+@{
+    ViewBag.Title = "Detalle";
+}
+
+<h2>Detalle</h2>
+
+<div>
+    <h4>Estado de cuenta</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Estado de pago
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoPago)
+        </dd>
+
+        <dt>
+            Proxima fecha a pagar
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProximaFechaPago)
+        </dd>
+
+        <dt>
+            Estado actual
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstadoActual)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <a href="@Url.Action("Index", "EstadoCuenta")" class="btn btn-secondary"><i class="fa-solid fa-arrow-left"></i> Volver a la lista</a>
+</p>
