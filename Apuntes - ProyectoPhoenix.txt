@@ -1,0 +1,20 @@
+**ADMINISTRADOR**
+♂ mquirosca@est.utn.ac.cr
+	ADMIN123456
+
+**RESIDENTE**
+♀ npaniagua@utn.ac.cr
+	REnS456789
+
+♂ kevinrlara123@gmail.com
+	KRL753015
+
+♂ javq11@yahoo.es
+	JAqv1190
+
+**CODIGO PARA REINICIAR LA DB**
+DBCC CHECKIDENT(**NOMBRE DE LA TABLA**, RESEED, 1)
+
+ABBUH-YR7HS-32ZNF-DGZAF-GJAY9
+
+xgcgeramkfvyioha
